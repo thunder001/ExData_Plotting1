@@ -1,0 +1,8 @@
+setwd("d:/zhengcl/Datascience/Exploratory/project1")
+consump <- read.table("household_power_consumption.txt", header=TRUE, sep=";", na.strings="?", stringsAsFactors=FALSE)
+consump_subset <- subset(consump, Date=="1/2/2007" | Date=="2/2/2007")
+dt <- paste(consump_subset$Date,consump_subset$Time)
+dt1 <- strptime(dt, "%d/%m/%Y %H:%M:%S")
+plot(dt1, consump_subset$Global_active_power, type="l", xlab = "", ylab="Global Active Power(Kilowatts)")
+dev.copy(png, file="plot2.png")
+dev.off()
